@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PL PRIME</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top" id="top">
+    <div class="container top__inner">
+      <a class="brand" href="#">PL PRIME</a>
+
+      <nav class="nav">
+        <a href="#novidades">Novidades</a>
+        <a href="#colecao">Coleção</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <button class="btn btn--ghost" id="btnCarrinho" aria-label="Abrir carrinho">
+        Carrinho (<span id="qtdCarrinho">0</span>)
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__inner">
+        <div>
+          <p class="tag">Nova coleção</p>
+          <h1>Roupas que combinam com você ✨</h1>
+          <p class="muted">
+            Peças básicas, estilosas e confortáveis. Entrega rápida e pagamento seguro.
+          </p>
+          <div class="hero__cta">
+            <a class="btn" href="#colecao">Ver produtos</a>
+            <a class="btn btn--ghost" href="#contato">Falar no WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="hero__card">
+          <h3>Frete grátis</h3>
+          <p class="muted">Em compras acima de R$ 250</p>
+          <div class="divider"></div>
+          <h3>Troca fácil</h3>
+          <p class="muted">Até 7 dias após receber</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ SOBRE (corrigido) -->
+    <section id="sobre" class="section">
+      <div class="container">
+        <h2>Sobre a loja</h2>
+        <p class="muted">
+          Somos dois amigos sonhadores que decidiram transformar ideias em realidade.
+          Essa loja nasce com muito esforço, fé e vontade de crescer, sempre trazendo estilo e qualidade para vocês.
+          Sejam bem-vindos ao começo da nossa história. 🚀👕
+          O melhor ainda está por vir!
+        </p>
+
+        <ul class="bullets">
+          <li>Atendimento rápido</li>
+          <li>Peças selecionadas com carinho</li>
+          <li>Pagamento via Pix / cartão</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="novidades" class="section">
+      <div class="container">
+        <h2>Novidades</h2>
+        <p class="muted">Os queridinhos da semana.</p>
+        <div class="grid" id="gridNovidades"></div>
+      </div>
+    </section>
+
+    <section id="colecao" class="section section--alt">
+      <div class="container">
+        <div class="row">
+          <div>
+            <h2>Coleção</h2>
+            <p class="muted">Escolha por categoria.</p>
+          </div>
+
+          <div class="filters">
+            <button class="chip is-active" data-filter="todos">Todos</button>
+            <button class="chip" data-filter="camisetas">Camisetas</button>
+            <button class="chip" data-filter="calcas">tenis</button>
+            <button class="chip" data-filter="vestidos">calcas</button>
+            <button class="chip" data-filter="acessorios">Acessórios</button>
+          </div>
+        </div>
+
+        <div class="grid" id="gridColecao"></div>
+      </div>
+    </section>
+
+    <section id="contato" class="section section--alt">
+      <div class="container contato">
+        <div>
+          <h2>Contato</h2>
+          <p class="muted">Quer comprar pelo WhatsApp? A gente te atende agora.</p>
+
+          <div class="contact-cards">
+            <div class="card">
+              <h3>WhatsApp</h3>
+              <p class="muted">Clique pra abrir a conversa</p>
+              <a class="btn" id="linkWhats" href="#" target="_blank" rel="noreferrer">Abrir WhatsApp</a>
+            </div>
+
+            <div class="card">
+              <h3>Instagram</h3>
+              <p class="muted">@plprimeofc
+            
+              </p>
+              <a class="btn btn--ghost" href="#" target="_blank" rel="noreferrer">Ver Instagram</a>
+            </div>
+          </div>
+        </div>
+
+        <form class="form card" onsubmit="event.preventDefault(); alert('Mensagem enviada!');">
+          <h3>Fale com a gente</h3>
+          <label>
+            Nome
+            <input required placeholder="Seu nome" />
+          </label>
+          <label>
+            Email
+            <input type="email" required placeholder="seuemail@exemplo.com" />
+          </label>
+          <label>
+            Mensagem
+            <textarea required rows="4" placeholder="Escreva sua mensagem"></textarea>
+          </label>
+          <button class="btn" type="submit">Enviar</button>
+          <p class="muted small">* Formulário de exemplo (sem backend).</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="muted">© <span id="ano"></span> PL PRIME — Todos os direitos reservados.</p>
+      <a class="muted" href="#top">Voltar ao topo</a>
+    </div>
+  </footer>
+
+  <!-- Modal Carrinho -->
+  <div class="modal" id="modalCarrinho" aria-hidden="true">
+    <div class="modal__overlay" id="overlayCarrinho"></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Carrinho">
+      <div class="modal__header">
+        <h3>Seu carrinho</h3>
+        <button class="btn btn--ghost" id="fecharCarrinho">Fechar</button>
+      </div>
+
+      <div id="itensCarrinho" class="cart"></div>
+
+      <div class="modal__footer" style="flex-direction:column; align-items:stretch; gap:10px;">
+        <div class="total" style="justify-content:space-between;">
+          <span>Total:</span>
+          <strong id="totalCarrinho">R$ 0,00</strong>
+        </div>
+
+        <a class="btn btn--ghost" id="checkoutWhats" href="#" target="_blank">
+  Finalizar no WhatsApp
+</a>
+        <!-- opcional: manter whatsapp também -->
+        <a class="btn btn--ghost" id="checkoutWhats" href="#" target="_blank" rel="noreferrer">
+          Finalizar no WhatsApp
+        </a>
+
+        <p class="muted small" style="margin:0;">
+          Você será redirecionado para o checkout seguro do Mercado Pago.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
