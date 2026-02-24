@@ -19,104 +19,54 @@
   <main class="section">
     <div class="container">
       <h2>Painel Admin</h2>
-      <p class="muted">Cadastro/edição de produtos (salvo no navegador).</p>
+      <p class="muted">Adicionar produtos com nome e foto (URL). Sem backend.</p>
 
-      <!-- LOGIN -->
-      <div class="card" id="loginBox" style="max-width:520px;">
-        <h3>Login</h3>
-        <p class="muted small">Senha simples só pra bloquear curiosos.</p>
+      <div class="card" style="gap:12px;">
+        <h3>Novo produto</h3>
 
         <label>
-          Senha
-          <input id="adminPass" type="password" placeholder="Digite a senha" />
+          <div class="muted small">Nome</div>
+          <input id="nome" placeholder="Ex: Camiseta Premium" />
         </label>
-        <div class="row">
-          <button class="btn" id="btnLogin">Entrar</button>
-          <button class="btn btn--ghost" id="btnHint" type="button">Dica</button>
-        </div>
-        <p class="muted small" id="hint" style="display:none;margin:0;">
-          A senha padrão é <strong>plprime123</strong> (você pode mudar no admin.js).
-        </p>
-      </div>
 
-      <!-- PAINEL -->
-      <div id="painel" style="display:none;">
-        <div class="row" style="align-items:flex-end;">
-          <div>
-            <h3 style="margin:0;">Produtos</h3>
-            <p class="muted small" style="margin:6px 0 0;">Adicionar, editar, excluir. Fotos por URL.</p>
-          </div>
-          <div class="row" style="gap:8px;">
-            <button class="btn btn--ghost" id="btnExportar">Exportar JSON</button>
-            <button class="btn btn--ghost" id="btnResetar">Restaurar padrão</button>
-            <button class="btn btn--ghost" id="btnSair">Sair</button>
-          </div>
-        </div>
-
-        <div style="height:14px;"></div>
-
-        <!-- FORM -->
-        <div class="card">
-          <h3 id="formTitulo" style="margin:0;">Novo produto</h3>
-
-          <div class="row" style="align-items:stretch;">
-            <label style="flex:1;">
-              <div class="muted small">Nome</div>
-              <input id="nome" placeholder="Ex: Camiseta Premium" />
-            </label>
-
-            <label style="width:180px;">
-              <div class="muted small">Preço</div>
-              <input id="preco" type="number" step="0.01" placeholder="59.90" />
-            </label>
-          </div>
-
-          <div class="row" style="align-items:stretch;">
-            <label style="flex:1;">
-              <div class="muted small">Categoria</div>
-              <select id="categoria" style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid var(--line); background:#0f1118; color:var(--text);">
-                <option value="camisetas">camisetas</option>
-                <option value="tenis">tenis</option>
-                <option value="calcas">calcas</option>
-                <option value="acessorios">acessorios</option>
-              </select>
-            </label>
-
-            <label style="width:180px;">
-              <div class="muted small">Emoji</div>
-              <input id="emoji" placeholder="👕" />
-            </label>
-          </div>
-
-          <label>
-            <div class="muted small">Foto (URL)</div>
-            <input id="foto" placeholder="https://...jpg / png / webp" />
+        <div class="row" style="align-items:stretch;">
+          <label style="flex:1;">
+            <div class="muted small">Categoria</div>
+            <select id="categoria" style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid var(--line); background:#0f1118; color:var(--text);">
+              <option value="camisetas">camisetas</option>
+              <option value="tenis">tenis</option>
+              <option value="calcas">calcas</option>
+              <option value="acessorios">acessorios</option>
+            </select>
           </label>
 
-          <div class="row" style="justify-content:space-between;">
-            <div class="row" style="gap:8px;">
-              <button class="btn" id="btnSalvar">Salvar</button>
-              <button class="btn btn--ghost" id="btnCancelar" type="button" style="display:none;">Cancelar edição</button>
-            </div>
-            <button class="btn btn--ghost" id="btnLimparTudo" type="button">Limpar tudo</button>
-          </div>
-
-          <div id="preview" class="card" style="display:none; margin-top:10px;">
-            <div class="muted small">Prévia da imagem:</div>
-            <img id="previewImg" alt="Prévia" style="width:100%; max-height:280px; object-fit:cover; border-radius:14px; border:1px solid var(--line);" />
-          </div>
+          <label style="width:200px;">
+            <div class="muted small">Preço</div>
+            <input id="preco" type="number" step="0.01" placeholder="59.90" />
+          </label>
         </div>
 
-        <div style="height:14px;"></div>
+        <label>
+          <div class="muted small">Foto (URL)</div>
+          <input id="foto" placeholder="https://...jpg / png / webp" />
+        </label>
 
-        <!-- LISTA -->
-        <div class="card">
-          <div class="row">
-            <h3 style="margin:0;">Lista</h3>
-            <input id="busca" placeholder="Buscar produto..." style="max-width:260px;" />
-          </div>
-          <div id="lista" class="cart" style="margin-top:10px;"></div>
+        <div id="preview" class="card" style="display:none;">
+          <div class="muted small">Prévia:</div>
+          <img id="previewImg" alt="Prévia" style="width:100%; max-height:280px; object-fit:cover; border-radius:14px; border:1px solid var(--line);" />
         </div>
+
+        <div class="row">
+          <button class="btn" id="btnAdd">Adicionar</button>
+          <button class="btn btn--ghost" id="btnLimpar">Limpar tudo</button>
+        </div>
+      </div>
+
+      <div style="height:14px;"></div>
+
+      <div class="card">
+        <h3 style="margin:0;">Produtos cadastrados</h3>
+        <div id="lista" class="cart" style="margin-top:10px;"></div>
       </div>
     </div>
   </main>
